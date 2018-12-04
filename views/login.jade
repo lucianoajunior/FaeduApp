@@ -1,0 +1,15 @@
+extends layout
+
+block content
+  form(method="POST", action="/login", class="form-login col-md-4 offset-md-4 text-center pt-4 pb-4")
+      
+    h3 Entrar no sistema
+    p Informe os dados para acessar a plataforma.
+
+    div(class="form-group")
+        input(type="email", class="form-control", placeholder="Digite o e-mail...", name="email", autofocus, required )
+
+    div(class="form-group")
+        input(type="password", class="form-control", placeholder="Digite a senha...", name="password", required )
+
+    button(type="submit", class="btn btn-primary btn-block") Entrar

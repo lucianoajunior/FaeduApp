@@ -1,0 +1,30 @@
+extends ../layout
+
+block content
+    h2 Estudantes
+    a(href="/estudantes/cadastrar" class="btn btn-sm btn-green") Cadastrar
+    br
+    if estudantes.length > 0
+        table(class="table table-striped")
+
+            thead
+                tr
+                    th ID
+                    th Nome
+                    th Cadastro
+                    th Ações
+            tbody
+                each estudante in estudantes
+                    tr
+                        td #{estudante._id}
+                        td #{estudante.nome}
+                        td #{estudante.dataCadastro.toLocaleString()}
+                        td 
+                            a(href="/estudantes/visualizar/#{estudante._id}", class="btn btn-sm btn-primary")
+                                span Visualizar
+                            a(href="/estudantes/editar/#{estudante._id}", class="btn btn-sm btn-secondary")
+                                span Editar
+                            a(href="/estudantes/remover/#{estudante._id}", class="btn btn-sm btn-danger")
+                                span Remover
+    else
+        p Nenhum registro encontrado!

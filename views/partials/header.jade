@@ -1,0 +1,28 @@
+header
+    div(class="container")
+        div(class="row")
+            div(class="col-md-6")
+                p(class="mb-0") Logotipo
+            div(class="col-md-6 text-right")
+
+                if session.isLogged
+
+                    span(class="code") Seu código: c7wc6e
+
+                    span(class="pr-4") Olá, 
+                        b !{session.nome}.
+                    a(href="/logout", class="btn btn-sm btn-danger") Logout
+                else
+                    a(href="/usuarios/registrar", class="btn btn-sm btn-primary mr-1") Registre-se
+                    a(href="/login", class="btn btn-sm btn-success") Logar
+
+        if session.isLogged
+            div(class="row")
+                div(class="col-md-12")
+                    ul(class="nav nav-justified")
+                        li(class="active")
+                            a(href="/") Home
+                        li
+                            a(href="/exercicios") Seus exercícios
+                        li
+                            a(href="/resolver") Realizar um exercício

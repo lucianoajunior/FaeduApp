@@ -1,0 +1,29 @@
+extends ../layout
+
+block diagram
+    div(class="wrapper")
+        div(id="nav-actions")
+            button(id="pointer" onclick="changeAction('pointer')") Pointer
+            button(id="actor" onclick="changeAction('actor')") Actor
+            button(id="usecase" onclick="changeAction('usecase')") UseCase
+            button(id="association" onclick="changeAction('association')") Association
+            button(id="annotation" onclick="changeAction('annotation')") Annotation
+            button(id="include" onclick="changeAction('include')") Include
+            button(id="extend" onclick="changeAction('extend')") Extend
+            button(id="save" onclick="generateURL()") Gerar
+            button(id="asd" onclick="save()") Salvar
+
+        div(id="board")
+
+block scripts
+    script(src="/js/jquery.min.js")
+    script(src="/p5js/p5.min.js")
+    script(src="/diagrams/sketch.js")
+    script(src="/diagrams/Actor.js")
+    script(src="/diagrams/Annotation.js")
+    script(src="/diagrams/Association.js")
+    script(src="/diagrams/Extend.js")
+    script(src="/diagrams/Generalization.js")
+    script(src="/diagrams/Include.js")
+    script(src="/diagrams/Sys.js")
+    script(src="/diagrams/UseCase.js")

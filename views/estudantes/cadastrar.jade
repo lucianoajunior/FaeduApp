@@ -1,0 +1,11 @@
+extends ../layout
+
+block content
+    h1 Cadastro de Estudante
+   
+    form(method="POST",action="/estudantes/cadastrar",role="form")
+        div(class="form-group")
+            label Nome
+            input(type="text", class="form-control",name="nome",value="#{ estudante.nome || ''}", palceholder="Nome", autofocus, required)
+
+        button(type="submit", class="btn btn-success") Salvar

@@ -1,0 +1,12 @@
+extends ../layout
+
+block content
+    div(class="container pt-4 pb-4")
+        h1 Resolver Exercício
+    
+        form( method="POST", action="/exercicios/cadastrar", role="form")
+            div(class="form-group")
+                label Código do usuário
+                input(type="text", class="form-control", name="titulo", placeholder="Digite o código...", autofocus, required )
+
+            button(type="submit", class="btn btn-success") Resolver
