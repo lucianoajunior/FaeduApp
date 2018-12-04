@@ -4,23 +4,23 @@ module.exports = ( app ) => {
     const VerifyToken = require('../middleware/VerifyToken');
 
     // Register a new user.
-    app.post('/api/users', ( req, res ) => {
+    app.post('/api/users', ( req, res, next ) => {
 
-        try {
-            const u = new Users( req.body );
+        const u = new Users( req.body );
 
-            u.save( ( err ) => {
-                if( err )
-                    throw err;
+        u.save( ( err ) => {
 
-                return res.status( 200 ).json({
-                    message: 'User registered successfully!'
-                });
+            if( err ) {
+                const error = new Error( err.message );
+                error.httpStatusCode = 400;
+                return next( error );
+            }                   
+
+            return res.status( 200 ).json({
+                status: true,
+                message: 'User registered successfully!'
             });
-        } catch( err ) {
-            return res.status( 500 ).json({
-                error: err
-            });
-        }
+        });
+            
     });
 }
