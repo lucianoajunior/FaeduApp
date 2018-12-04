@@ -4,7 +4,7 @@ module.exports = ( app ) => {
     const VerifyToken = require('../middleware/VerifyToken');
 
     // Register a new user.
-    app.post('/api/users', VerifyToken, ( req, res ) => {
+    app.post('/api/users', ( req, res ) => {
 
         try {
             const u = new Users( req.body );
