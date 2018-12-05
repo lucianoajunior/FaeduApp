@@ -4,7 +4,7 @@ module.exports = ( app ) => {
     const VerifyToken = require('../middleware/VerifyToken');
     
     // List all exercises.
-    app.get('/api/exercises', ( req, res, next ) => {
+    app.get('/api/exercises', VerifyToken, ( req, res, next ) => {
 
         Exercises.find( req.query, ( err, data ) => {
 
@@ -19,7 +19,7 @@ module.exports = ( app ) => {
     });
 
     // Return an exercise by id.
-    app.get('/api/exercises/:id', ( req, res, next ) => {
+    app.get('/api/exercises/:id', VerifyToken, ( req, res, next ) => {
 
         Exercises.findOne({
             _id: req.params.id
@@ -38,7 +38,7 @@ module.exports = ( app ) => {
     });
 
     // Register a new exercise.
-    app.post('/api/exercises', ( req, res, next ) => {
+    app.post('/api/exercises', VerifyToken, ( req, res, next ) => {
 
         const e = new Exercises( req.body );
 
@@ -58,7 +58,7 @@ module.exports = ( app ) => {
     });
 
     // Update an exercise.
-    app.put('/api/exercises/:id', ( req, res, next ) => {
+    app.put('/api/exercises/:id', VerifyToken, ( req, res, next ) => {
 
         Exercises.findOneAndUpdate({
             _id: req.params.id
@@ -78,7 +78,7 @@ module.exports = ( app ) => {
     });
 
     // Delete an user.
-    app.delete('/api/exercises/:id', ( req, res, next ) => {
+    app.delete('/api/exercises/:id', VerifyToken, ( req, res, next ) => {
 
         Exercises.deleteOne({
             _id: req.params.id
