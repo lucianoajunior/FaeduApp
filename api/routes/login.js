@@ -22,7 +22,7 @@ module.exports = ( app ) => {
                     return res.status( 404 ).json({
                         message: 'Information not found'
                     });
-                }                   
+                }
     
                 const id = result._id;
                 const token = jwt.sign({ id }, process.env.SECRET, {

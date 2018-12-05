@@ -11,6 +11,8 @@ Abaixo estão todos os endpoints que são escutados pela a API.
  
 ##### 2. Usuários
 * **POST /api/users**: Cadastra um novo usuário.
+* **GET /api/users**: Retorna todos os usuários ou, caso passado algum filtro, retorna os que encaixam **(protegida)**.
 * **GET /api/users/:id**: Retorna os dados do usuário **(protegida)**.
 * **PUT /api/users/:id**: Atualiza os dados do usuário **(protegida)**.
 * **DELETE /api/users/:id**: Deleta o usuário do banco **(protegida)**.
+
