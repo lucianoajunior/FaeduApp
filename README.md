@@ -1,7 +1,7 @@
 # API FAEDU
 A API foi construia seguindos os padrões REST e usando Node.js/Express.\
 A autenticação é feita através do JWT, que deve ser gerado no login e passado nas requisições posteriores.\
-Para requisitar os endpoints protegidos você deve passar o cabeçalho **x-access-token**, seguido do token fornecido pela API.\
+Para requisitar os endpoints protegidos você deve passar o cabeçalho **x-access-token**, seguido do token fornecido pela API.
 
 ### Endpoints
 Abaixo estão todos os endpoints que são escutados pela a API.

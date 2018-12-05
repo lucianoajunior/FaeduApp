@@ -24,7 +24,7 @@ module.exports = ( app ) => {
     });
 
     // Return an user by id.
-    app.get('/api/users/:id', ( req, res, next ) => {
+    app.get('/api/users/:id', VerifyToken, ( req, res, next ) => {
 
         Users.findOne({
             _id: req.params.id
