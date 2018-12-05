@@ -9,7 +9,7 @@ module.exports = ( app ) => {
             Users.findOne({
                 email: req.body.email,
                 password: req.body.password,
-                level: req.body.type                
+                level: req.body.level                
             }, ( err, result ) => {
                 
                 if( err ) {
