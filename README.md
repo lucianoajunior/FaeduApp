@@ -16,3 +16,9 @@ Abaixo estão todos os endpoints que são escutados pela a API.
 * **PUT /api/users/:id**: Atualiza os dados do usuário **(protegida)**.
 * **DELETE /api/users/:id**: Deleta o usuário do banco **(protegida)**.
 
+##### 3. Exercícios
+* **GET /api/exercises**: Retorna todos os exercícios **(protegida)**.
+* **GET /api/exercises/:id**: Retorna um exercício específico **(protegida)**.
+* **POST /api/exercises**: Cadastra um novo exercício **(protegida)**.
+* **PUT /api/exercises/:id**: Atualiza os dados do exercício **(protegida)**.
+* **DELETE /api/exercises/:id**: Deleta o exercício em questão **(protegida)**.

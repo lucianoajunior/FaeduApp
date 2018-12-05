@@ -1,32 +1,12 @@
 module.exports = ( app ) => {
     
-    const Users = app.models.users;
+    const Exercises = app.models.exercises;
     const VerifyToken = require('../middleware/VerifyToken');
+    
+    // List all exercises.
+    app.get('/api/exercises', ( req, res, next ) => {
 
-    // Register a new user.
-    app.post('/api/users', ( req, res, next ) => {
-
-        const u = new Users( req.body );
-
-        u.save( ( err ) => {
-
-            if( err ) {
-                const error = new Error( err.message );
-                error.httpStatusCode = 400;
-                return next( error );
-            }                   
-
-            return res.status( 200 ).json({
-                status: true,
-                message: 'User registered successfully!'
-            });
-        });
-    });
-
-    // Listando todos os usuários.
-    app.get('/api/users', VerifyToken, ( req, res, next ) => {
-
-        Users.find( req.query, ( err, data ) => {
+        Exercises.find( req.query, ( err, data ) => {
 
             if( err ) {
                 const error = new Error( err.message );
@@ -38,10 +18,10 @@ module.exports = ( app ) => {
         });
     });
 
-    // Return an user by id.
-    app.get('/api/users/:id', VerifyToken, ( req, res, next ) => {
+    // Return an exercise by id.
+    app.get('/api/exercises/:id', ( req, res, next ) => {
 
-        Users.findOne({
+        Exercises.findOne({
             _id: req.params.id
         }, ( err, data ) => {
 
@@ -52,18 +32,35 @@ module.exports = ( app ) => {
             }
             
             if( data ) {
-                return res.status( 200 ).json({
-                    status: true,
-                    user: data
-                });
+                return res.status( 200 ).json( data );
             }
         });        
     });
 
-    // Update an user.
-    app.put('/api/users/:id', VerifyToken, ( req, res, next ) => {
+    // Register a new exercise.
+    app.post('/api/exercises', ( req, res, next ) => {
 
-        Users.findOneAndUpdate({
+        const e = new Exercises( req.body );
+
+        e.save( ( err ) => {
+
+            if( err ) {
+                const error = new Error( err.message );
+                error.httpStatusCode = 400;
+                return next( error );
+            }
+
+            return res.status( 200 ).json({
+                status: true,
+                message: 'Exercise registered successfully!'
+            });
+        });
+    });
+
+    // Update an exercise.
+    app.put('/api/exercises/:id', ( req, res, next ) => {
+
+        Exercises.findOneAndUpdate({
             _id: req.params.id
         }, req.body, ( err ) => {
 
@@ -75,15 +72,15 @@ module.exports = ( app ) => {
 
             return res.status( 200 ).json({
                 status: true,
-                message: "User successfully updated!"
+                message: "Exercise successfully updated!"
             });
         });
     });
 
     // Delete an user.
-    app.delete('/api/users/:id', VerifyToken, ( req, res, next ) => {
+    app.delete('/api/exercises/:id', ( req, res, next ) => {
 
-        Users.deleteOne({
+        Exercises.deleteOne({
             _id: req.params.id
         }, ( err ) => {
 
@@ -95,7 +92,7 @@ module.exports = ( app ) => {
 
             return res.status( 200 ).json({
                 status: true,
-                message: "User successfully removed!"
+                message: "Exercise successfully removed!"
             });
         });
     });

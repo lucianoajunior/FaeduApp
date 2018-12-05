@@ -25,6 +25,8 @@ module.exports = () => {
             type: Date,
             default: Date.now
         }
+    }, {
+        versionKey: false
     });
 
     usersSchema.methods.generateHash = ( password ) => {

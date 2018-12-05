@@ -7,7 +7,7 @@ module.exports = () => {
             trim: true
         },
         author: {
-
+            type: mongoose.Schema.Types.ObjectId, ref: 'User'
         },
         type: {
             type: Number,
@@ -16,6 +16,8 @@ module.exports = () => {
             type: String,
             trim: true
         }
+    }, {
+        versionKey: false
     });
 
     return mongoose.model('Exercise', exercisesSchema );
