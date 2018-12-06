@@ -6,10 +6,10 @@ Para requisitar os endpoints protegidos você deve passar o cabeçalho **x-acces
 ### Endpoints
 Abaixo estão todos os endpoints que são escutados pela a API.
 
-##### 1. Login
+#### 1. Login
 * **POST /api/login**: Realiza o login e retorna um token JWT.
  
-##### 2. Usuários
+#### 2. Usuários
 Campos: ```name```, ```organization```, ```email```, ```password```, ```level``` e ```created_at```.
 * **POST /api/users**: Cadastra um novo usuário.
 * **GET /api/users**: Retorna todos os usuários. **(protegida)**.
@@ -19,7 +19,7 @@ Campos: ```name```, ```organization```, ```email```, ```password```, ```level```
 * **PUT /api/users/:id**: Atualiza os dados do usuário **(protegida)**.
 * **DELETE /api/users/:id**: Deleta o usuário do banco **(protegida)**.
 
-##### 3. Exercícios
+#### 3. Exercícios
 Campos: ```title```, ```author```, ```type```, ```description``` e ```json```.
 * **GET /api/exercises**: Retorna todos os exercícios **(protegida)**.
     *  Passando o parâmetro ```?s=Faculdade``` você filtra campos que contenham a string nos campos ```title``` e ```description```.
@@ -28,3 +28,9 @@ Campos: ```title```, ```author```, ```type```, ```description``` e ```json```.
 * **POST /api/exercises**: Cadastra um novo exercício **(protegida)**.
 * **PUT /api/exercises/:id**: Atualiza os dados do exercício **(protegida)**.
 * **DELETE /api/exercises/:id**: Deleta o exercício em questão **(protegida)**.
+
+#### 4. Submissões
+Campos: ```author```, ```exercise```, ```json``` e ```date``` (o campo data é registrado automaticamente pela API).
+* **GET /api/submissions**: Retorna todas as submissões **(protegida)**.
+* **GET /api/submissions/:id**: Retorna todos os dados de uma determinada submissão **(protegida)**.
+* **POST /api/submissions**: Cadastra uma nova submissão **(protegida)**.

@@ -4,7 +4,7 @@ module.exports = ( app ) => {
     const VerifyToken = require('../middleware/VerifyToken');
     
     // List all exercises.
-    app.get('/api/exercises', ( req, res, next ) => {
+    app.get('/api/exercises', VerifyToken, ( req, res, next ) => {
 
         Exercises.find({
             $or: [
