@@ -24,13 +24,20 @@ module.exports = ( app ) => {
     });
 
     // Listando todos os usuários.
-    app.get('/api/users', VerifyToken, ( req, res, next ) => {
+    app.get('/api/users', ( req, res, next ) => {
 
-        const args = {};
-        if( req.query.s ) args.email = new RegExp( req.query.s );
-        if( req.query.level ) args.level = req.query.level;
-
-        Users.find( args, ( err, data ) => {
+        Users.find({
+            $or: [
+                {
+                    name: new RegExp( req.query.s )
+                }, {
+                    organization: new RegExp( req.query.s )
+                }, {
+                    email: new RegExp( req.query.s )
+                }
+            ],
+            level: 2
+        }, ( err, data ) => {
 
             if( err ) {
                 const error = new Error( err.message );

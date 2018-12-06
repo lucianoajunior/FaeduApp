@@ -18,12 +18,35 @@ module.exports = ( app ) => {
         });
     });
 
+    // List all exercises from an author.
+    app.get('/api/exercises/author/:id', VerifyToken, ( req, res, next ) => {
+        Exercises.find({
+            author: req.params.id
+        })
+        .populate('author')
+        .exec( ( err, data ) => {
+
+            if( err ) {
+                const error = new Error( err.message );
+                error.httpStatusCode = 400;
+                return next( error );
+            }
+
+            if( ! data )
+                return res.status( 200 ).json({});
+
+            return res.status( 200 ).json( data );
+        });
+    });
+
     // Return an exercise by id.
     app.get('/api/exercises/:id', VerifyToken, ( req, res, next ) => {
 
         Exercises.findOne({
             _id: req.params.id
-        }, ( err, data ) => {
+        })
+        .populate('author')
+        .exec( ( err, data ) => {
 
             if( err ) {
                 const error = new Error( err.message );
@@ -34,7 +57,7 @@ module.exports = ( app ) => {
             if( data ) {
                 return res.status( 200 ).json( data );
             }
-        });        
+        });
     });
 
     // Register a new exercise.
