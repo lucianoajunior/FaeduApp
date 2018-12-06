@@ -28,8 +28,16 @@ module.exports = ( app ) => {
 
     // List all exercises from an author.
     app.get('/api/exercises/author/:id', VerifyToken, ( req, res, next ) => {
+
         Exercises.find({
-            author: req.params.id
+            author: req.params.id,
+            $or: [
+                {
+                    title: new RegExp( req.query.s )
+                }, {
+                    description: new RegExp( req.query.s )
+                }
+            ]
         })
         .populate('author')
         .exec( ( err, data ) => {
