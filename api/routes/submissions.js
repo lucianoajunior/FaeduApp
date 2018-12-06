@@ -20,6 +20,28 @@ module.exports = ( app ) => {
         });
     });
 
+    app.get('/api/submissions/author/:id', ( req, res, next ) => {
+
+        Submissions.find({
+            author: req.params.id
+        })
+        .populate('author')
+        .populate('exercise')
+        .exec( ( err, data ) => {
+
+            if( err ) {
+                const error = new Error( err.message );
+                error.httpStatusCode = 400;
+                return next( error );
+            }
+
+            if( ! data )
+                return res.status( 200 ).json({});
+
+            return res.status( 200 ).json( data );
+        });
+    });
+
     app.get('/api/submissions/:id', VerifyToken, ( req, res, next ) => {
 
         Submissions.findOne({

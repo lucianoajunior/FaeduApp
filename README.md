@@ -33,4 +33,5 @@ Campos: ```title```, ```author```, ```type```, ```description``` e ```json```.
 Campos: ```author```, ```exercise```, ```json``` e ```date``` (o campo data é registrado automaticamente pela API).
 * **GET /api/submissions**: Retorna todas as submissões **(protegida)**.
 * **GET /api/submissions/:id**: Retorna todos os dados de uma determinada submissão **(protegida)**.
+* **GET /api/submissions/author/:id**: Retorna todas as submissões realizadas por um aluno **(protegida)**.
 * **POST /api/submissions**: Cadastra uma nova submissão **(protegida)**.
