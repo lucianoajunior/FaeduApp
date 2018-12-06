@@ -40,7 +40,12 @@ module.exports = ( app ) => {
     // Register a new exercise.
     app.post('/api/exercises', VerifyToken, ( req, res, next ) => {
 
-        const e = new Exercises( req.body );
+        const e = new Exercises({
+            title: req.body.title,
+            author: 1,
+            type: req.body.type,
+            description: req.body.description
+        });
 
         e.save( ( err ) => {
 

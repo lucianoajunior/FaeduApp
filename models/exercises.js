@@ -7,7 +7,8 @@ module.exports = () => {
             trim: true
         },
         author: {
-            type: mongoose.Schema.Types.ObjectId, ref: 'User'
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'User'
         },
         type: {
             type: Number,
@@ -15,6 +16,9 @@ module.exports = () => {
         description: {
             type: String,
             trim: true
+        },
+        json: {
+            type: String
         }
     }, {
         versionKey: false

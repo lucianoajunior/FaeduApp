@@ -26,7 +26,11 @@ module.exports = ( app ) => {
     // Listando todos os usuários.
     app.get('/api/users', VerifyToken, ( req, res, next ) => {
 
-        Users.find( req.query, ( err, data ) => {
+        const args = {};
+        if( req.query.s ) args.email = new RegExp( req.query.s );
+        if( req.query.level ) args.level = req.query.level;
+
+        Users.find( args, ( err, data ) => {
 
             if( err ) {
                 const error = new Error( err.message );
