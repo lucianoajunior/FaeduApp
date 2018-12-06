@@ -14,7 +14,7 @@
     "cookie-parser": "~1.4.3",
     "debug": "^4.1.0",
     "dotenv-safe": "^6.1.0",
-    "express": "^4.13.4",
+    "express": "^4.16.4",
     "express-load": "^1.1.15",
     "express-session": "^1.14.1",
     "express-validator": "^5.3.0",
@@ -24,8 +24,8 @@
     "moment": "^2.15.1",
     "mongodb": "^3.1.6",
     "mongoose": "^5.3.15",
-    "morgan": "^1.7.0",
-    "serve-favicon": "^2.3.2",
+    "morgan": "^1.9.1",
+    "serve-favicon": "^2.5.0",
     "session": "^0.1.0"
   }
 }
