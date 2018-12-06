@@ -4,9 +4,17 @@ module.exports = ( app ) => {
     const VerifyToken = require('../middleware/VerifyToken');
     
     // List all exercises.
-    app.get('/api/exercises', VerifyToken, ( req, res, next ) => {
+    app.get('/api/exercises', ( req, res, next ) => {
 
-        Exercises.find( req.query, ( err, data ) => {
+        Exercises.find({
+            $or: [
+                {
+                    title: new RegExp( req.query.s )
+                }, {
+                    description: new RegExp( req.query.s )
+                }
+            ]
+        }, ( err, data ) => {
 
             if( err ) {
                 const error = new Error( err.message );
@@ -63,12 +71,7 @@ module.exports = ( app ) => {
     // Register a new exercise.
     app.post('/api/exercises', VerifyToken, ( req, res, next ) => {
 
-        const e = new Exercises({
-            title: req.body.title,
-            author: 1,
-            type: req.body.type,
-            description: req.body.description
-        });
+        const e = new Exercises( req.body );
 
         e.save( ( err ) => {
 

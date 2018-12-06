@@ -10,15 +10,21 @@ Abaixo estão todos os endpoints que são escutados pela a API.
 * **POST /api/login**: Realiza o login e retorna um token JWT.
  
 ##### 2. Usuários
+Campos: ```name```, ```organization```, ```email```, ```password```, ```level``` e ```created_at```.
 * **POST /api/users**: Cadastra um novo usuário.
-* **GET /api/users**: Retorna todos os usuários ou, caso passado algum filtro, retorna os que encaixam **(protegida)**.
+* **GET /api/users**: Retorna todos os usuários. **(protegida)**.
+    * Sempre retornará apenas ```level: 2```, pois só não há listagem de alunos na ferramenta.
+    * Passando o parâmetro ```?s=Luciano``` você filtra campos que contenham a string nos campos ```name```, ```organization``` e ```email```.
 * **GET /api/users/:id**: Retorna os dados do usuário **(protegida)**.
 * **PUT /api/users/:id**: Atualiza os dados do usuário **(protegida)**.
 * **DELETE /api/users/:id**: Deleta o usuário do banco **(protegida)**.
 
 ##### 3. Exercícios
+Campos: ```title```, ```author```, ```type```, ```description``` e ```json```.
 * **GET /api/exercises**: Retorna todos os exercícios **(protegida)**.
+    *  Passando o parâmetro ```?s=Faculdade``` você filtra campos que contenham a string nos campos ```title``` e ```description```.
 * **GET /api/exercises/:id**: Retorna um exercício específico **(protegida)**.
+* **GET /api/exercises/author/:id**: Retorna uma lista de exercícios de um determinado autor **(protegida)**.
 * **POST /api/exercises**: Cadastra um novo exercício **(protegida)**.
 * **PUT /api/exercises/:id**: Atualiza os dados do exercício **(protegida)**.
 * **DELETE /api/exercises/:id**: Deleta o exercício em questão **(protegida)**.

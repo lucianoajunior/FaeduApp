@@ -24,7 +24,7 @@ module.exports = ( app ) => {
     });
 
     // Listando todos os usuários.
-    app.get('/api/users', ( req, res, next ) => {
+    app.get('/api/users', VerifyToken, ( req, res, next ) => {
 
         Users.find({
             $or: [
