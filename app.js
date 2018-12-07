@@ -65,7 +65,7 @@ mongoose.connect('mongodb://localhost/tcc', function(err) {
 const port = process.env.PORT || 80;
 
 app.listen(port, function() {
-    console.log('Servidor rodando na porta 3000');
+    console.log('Servidor rodando na porta', port );
 });
 
 app.use((err, req, res, next) => {

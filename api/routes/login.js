@@ -2,6 +2,7 @@ module.exports = ( app ) => {
     
     const Users = app.models.users;
     const jwt = require('jsonwebtoken');
+    const moment = require('moment');
 
     app.post('/api/login', ( req, res ) => {
 
@@ -29,9 +30,16 @@ module.exports = ( app ) => {
                     expiresIn: 84600
                 });
 
+                const data = jwt.verify( token, process.env.SECRET, (err, decoded) => {
+                    return decoded;
+                });
+ 
+                const dateString = moment.unix( data.exp ).format("YYYY-MM-DD HH:mm:ss");
+
                 return res.status( 200 ).send({
                     auth: true,
                     token: token,
+                    expiration: dateString,
                     level: result.level,
                     id: result._id
                 });
