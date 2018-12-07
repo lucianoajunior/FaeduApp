@@ -2,19 +2,19 @@ header
     div(class="container")
         div(class="row")
             div(class="col-md-6")
-                p(class="mb-0") Logotipo
+                a(href="/")
+                    img(src="/images/logo.png" alt="Logotipo FAEDU" name="Ferramenta de Auxílio ao Estudo de Diagramas da UML")
             div(class="col-md-6 text-right")
 
                 if session.isLogged
-
-                    span(class="code") Seu código: c7wc6e
 
                     span(class="pr-4") Olá, 
                         b !{session.nome}.
                     a(href="/logout", class="btn btn-sm btn-danger") Logout
                 else
-                    a(href="/usuarios/registrar", class="btn btn-sm btn-primary mr-1") Registre-se
-                    a(href="/login", class="btn btn-sm btn-success") Logar
+                    span É estudante?
+                    a(href="/usuarios/registrar", class="btn btn-sm btn-primary mr-1") Cadastre-se
+                    a(href="/login", class="btn btn-sm btn-secondary") Login
 
         if session.isLogged
             div(class="row")

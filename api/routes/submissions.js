@@ -26,7 +26,13 @@ module.exports = ( app ) => {
             author: req.params.id
         })
         .populate('author')
-        .populate('exercise')
+        .populate({
+            path: 'exercise',
+            populate: {
+                path: 'author',
+                model: 'User'
+            }
+        })
         .exec( ( err, data ) => {
 
             if( err ) {
