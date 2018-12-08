@@ -1,6 +1,9 @@
 extends layout
 
 block content
-  h1= message
-  h2= error.status
-  pre #{error.stack}
+	div(class="container")
+		div(class="col-md-6 offset-md-3" id="page-error")
+			span(id="sadly") :(
+			h1 Oops!
+			p(class="mb-0") A página requisitada não foi encontrada no nosso servidor.
+			p Por favor, volte para a página inicial e tente novamente.

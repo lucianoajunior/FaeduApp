@@ -3,24 +3,21 @@ module.exports = ( app ) => {
     const Submissions = app.models.submissions;
     const VerifyToken = require('../middleware/VerifyToken');
 
-    app.get('/api/submissions', ( req, res, next ) => {
+    app.get('/api/submissions', VerifyToken, ( req, res, next ) => {
 
         Submissions.find()
         .populate('author')
         .populate('exercise')
         .exec( ( err, data ) => {
 
-            if( err ) {
-                const error = new Error( err.message );
-                error.httpStatusCode = 400;
-                return next( error );
-            }
+            if( err ) 
+                return next( err );
 
             return res.status( 200 ).json( data );
         });
     });
 
-    app.get('/api/submissions/author/:id', ( req, res, next ) => {
+    app.get('/api/submissions/author/:id', VerifyToken, ( req, res, next ) => {
 
         Submissions.find({
             author: req.params.id
@@ -35,11 +32,8 @@ module.exports = ( app ) => {
         })
         .exec( ( err, data ) => {
 
-            if( err ) {
-                const error = new Error( err.message );
-                error.httpStatusCode = 400;
-                return next( error );
-            }
+            if( err )
+                return next( err );
 
             if( ! data )
                 return res.status( 200 ).json({});
@@ -57,11 +51,8 @@ module.exports = ( app ) => {
         .populate('exercise')
         .exec( ( err, data ) => {
 
-            if( err ) {
-                const error = new Error( err.message );
-                error.httpStatusCode = 400;
-                return next( error );
-            }
+            if( err )
+                return next( err );
 
             return res.status( 200 ).json( data );
         });
@@ -73,11 +64,8 @@ module.exports = ( app ) => {
 
         s.save( ( err ) => {
 
-            if( err ) {
-                const error = new Error( err.message );
-                error.httpStatusCode = 400;
-                return next( error );
-            }
+            if( err ) 
+                return next( err );
 
             return res.status( 200 ).json({
                 status: true,

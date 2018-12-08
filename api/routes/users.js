@@ -10,11 +10,7 @@ module.exports = ( app ) => {
 
         u.save( ( err ) => {
 
-            if( err ) {
-                const error = new Error( err.message );
-                error.httpStatusCode = 400;
-                return next( error );
-            }                   
+            if( err ) return next( err );          
 
             return res.status( 200 ).json({
                 status: true,
@@ -36,14 +32,10 @@ module.exports = ( app ) => {
                     email: new RegExp( req.query.s )
                 }
             ],
-            level: 2
+            level: req.query.level || 2
         }, ( err, data ) => {
 
-            if( err ) {
-                const error = new Error( err.message );
-                error.httpStatusCode = 400;
-                return next( error );
-            }
+            if( err ) return next( err );
 
             return res.status( 200 ).json( data );
         });
@@ -56,12 +48,8 @@ module.exports = ( app ) => {
             _id: req.params.id
         }, ( err, data ) => {
 
-            if( err ) {
-                const error = new Error( err.message );
-                error.httpStatusCode = 400;
-                return next( error );
-            }
-            
+            if( err ) return next( err );
+           
             if( data ) {
                 return res.status( 200 ).json({
                     status: true,
@@ -78,11 +66,7 @@ module.exports = ( app ) => {
             _id: req.params.id
         }, req.body, ( err ) => {
 
-            if( err ) {
-                const error = new Error( err.message );
-                error.httpStatusCode = 400;
-                return next( error );
-            }
+            if( err ) return next( err );
 
             return res.status( 200 ).json({
                 status: true,
@@ -98,11 +82,7 @@ module.exports = ( app ) => {
             _id: req.params.id
         }, ( err ) => {
 
-            if( err ) {
-                const error = new Error( err.message );
-                error.httpStatusCode = 400;
-                return next( error );
-            }
+            if( err ) return next( err );
 
             return res.status( 200 ).json({
                 status: true,

@@ -4,7 +4,13 @@ module.exports = ( app ) => {
     const jwt = require('jsonwebtoken');
     const moment = require('moment');
 
-    app.post('/api/login', ( req, res ) => {
+    app.post('/api/login', ( req, res, next ) => {
+
+        if( ! req.body.email ||
+            ! req.body.password ||
+            ! req.body.level
+        )
+            return next( new Error('Required parameters not found') );
 
         try {
             Users.findOne({
@@ -13,17 +19,11 @@ module.exports = ( app ) => {
                 level: req.body.level                
             }, ( err, result ) => {
                 
-                if( err ) {
-                    return res.status( 403 ).json({
-                        message: 'Bad request'
-                    });
-                }                    
+                if( err ) 
+                    return next( err );
 
-                if( ! result ) {
-                    return res.status( 404 ).json({
-                        message: 'Information not found'
-                    });
-                }
+                if( ! result )
+                    return next( new Error('Information not found') );
     
                 const id = result._id;
                 const token = jwt.sign({ id }, process.env.SECRET, {
@@ -45,7 +45,7 @@ module.exports = ( app ) => {
                 });
             });
         } catch( err ) {
-            return res.status( 500 ).json( err );
+            return next( err );
         }
     });
 

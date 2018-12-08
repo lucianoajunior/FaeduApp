@@ -4,7 +4,7 @@ body {
 
 header {
     background-color: #fff;
-    box-shadow: 2px 2px 15px #e8f0ff;
+    box-shadow: 2px 2px 15px #f2f2f2;
     padding: 20px 0;
 }
 
@@ -100,4 +100,32 @@ h3.lighter {
 
 .homepage h3.lighter.third {
     padding-top:40px;
+}
+
+#download-apk {
+    background: transparent;
+    padding: 15px 25px;
+    display: table;
+    border-radius: 5px;
+    margin: 0 auto;
+    color: #0057ff;
+    border: 1px solid #e4e4e4;
+    margin-top: 20px;
+}
+
+#download-apk:hover {
+    background-color: #0057ff;
+    color: #fff;
+}
+
+#page-error {
+    padding:40px 0px;
+}
+
+#page-error span {
+    color:#007bff;
+}
+
+#page-error span#sadly {
+    font-size:100px;
 }

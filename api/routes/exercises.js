@@ -16,11 +16,8 @@ module.exports = ( app ) => {
             ]
         }, ( err, data ) => {
 
-            if( err ) {
-                const error = new Error( err.message );
-                error.httpStatusCode = 400;
-                return next( error );
-            }
+            if( err ) 
+                return next( err );
 
             return res.status( 200 ).json( data );
         });
@@ -42,11 +39,8 @@ module.exports = ( app ) => {
         .populate('author')
         .exec( ( err, data ) => {
 
-            if( err ) {
-                const error = new Error( err.message );
-                error.httpStatusCode = 400;
-                return next( error );
-            }
+            if( err ) 
+                return next( err );
 
             if( ! data )
                 return res.status( 200 ).json({});
@@ -64,11 +58,8 @@ module.exports = ( app ) => {
         .populate('author')
         .exec( ( err, data ) => {
 
-            if( err ) {
-                const error = new Error( err.message );
-                error.httpStatusCode = 400;
-                return next( error );
-            }
+            if( err )
+                return next( err );
             
             if( data ) {
                 return res.status( 200 ).json( data );
@@ -83,11 +74,8 @@ module.exports = ( app ) => {
 
         e.save( ( err ) => {
 
-            if( err ) {
-                const error = new Error( err.message );
-                error.httpStatusCode = 400;
-                return next( error );
-            }
+            if( err )
+                return next( err );
 
             return res.status( 200 ).json({
                 status: true,
@@ -103,11 +91,8 @@ module.exports = ( app ) => {
             _id: req.params.id
         }, req.body, ( err ) => {
 
-            if( err ) {
-                const error = new Error( err.message );
-                error.httpStatusCode = 400;
-                return next( error );
-            }
+            if( err )
+                return next( err );
 
             return res.status( 200 ).json({
                 status: true,
@@ -123,11 +108,8 @@ module.exports = ( app ) => {
             _id: req.params.id
         }, ( err ) => {
 
-            if( err ) {
-                const error = new Error( err.message );
-                error.httpStatusCode = 400;
-                return next( error );
-            }
+            if( err )
+                return next( err );
 
             return res.status( 200 ).json({
                 status: true,
