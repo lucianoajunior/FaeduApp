@@ -4,7 +4,7 @@ module.exports = ( app ) => {
     const VerifyToken = require('../middleware/VerifyToken');
     
     // List all exercises.
-    app.get('/api/exercises', VerifyToken, ( req, res, next ) => {
+    app.get('/api/exercises', ( req, res, next ) => {
 
         Exercises.find({
             $or: [
@@ -14,7 +14,9 @@ module.exports = ( app ) => {
                     description: new RegExp( req.query.s )
                 }
             ]
-        }, ( err, data ) => {
+        })
+        .populate('author')
+        .exec( ( err, data ) => {
 
             if( err ) 
                 return next( err );
