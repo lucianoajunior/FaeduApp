@@ -1,0 +1,34 @@
+extends ../layout
+
+block content
+    div(class="container")
+        h3(class="lighter mt-4 mb-4") Painel de Controle
+
+        div(class="row")
+            div(class="col-md-3")
+                div(class="card")
+                    h5(class="card-header") Professores
+                    div(class="card-body")
+                        h5(class="card-title") #{teachers} professor(es)
+                        p(class="card-text") Quantidade de professores cadastrados na plataforma.
+                        a(href="/admin/professores" class="btn btn-primary btn-sm") Visualizar professores
+
+            div(class="col-md-3")
+                div(class="card")
+                    h5(class="card-header") Alunos
+                    div(class="card-body")
+                        h5(class="card-title") #{students} aluno(s)
+                        p(class="card-text pb-4") Quantidade de alunos cadastrados dentro da plataforma.
+
+            div(class="col-md-3")
+                div(class="card")
+                    h5(class="card-header") Exercícios
+                    div(class="card-body")
+                        h5(class="card-title") #{exercises} exercício(s)
+                        p(class="card-text pb-4") Quantidade de exercícios cadastrados pelos professores.
+            div(class="col-md-3")
+                div(class="card")
+                    h5(class="card-header") Submissões
+                    div(class="card-body")
+                        h5(class="card-title") #{submissions} submissões
+                        p(class="card-text pb-4") Quantidade de submissões de exercícios enviadas pelos alunos.

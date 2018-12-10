@@ -1,0 +1,10 @@
+for msg in messages
+    case msg.type
+        when "error"
+            div(class="alert alert-danger" role="alert") #{msg.message}
+        when "success"
+            div(class="alert alert-success" role="alert") #{msg.message}
+        when "warning"
+            div(class="alert alert-warning" role="alert") #{msg.message}
+        when "info"
+            div(class="alert alert-info" role="alert") #{msg.message}

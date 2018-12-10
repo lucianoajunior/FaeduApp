@@ -28,7 +28,7 @@ app.use( bodyParser.urlencoded({
 app.use( expressValidator() );
 app.use( cookieParser() );
 
-app.use(session({
+app.use( session({
     secret: 'superSecret',
     resave: true,
     saveUninitialized: true
@@ -38,16 +38,21 @@ app.use( express.static( path.join(__dirname, 'public') ) );
 app.use( flash() );
 
 // Helpers.
-app.use( (req, res, next) => {
+app.use( ( req, res, next ) => {
     res.locals.session = req.session;
     res.locals.moment = moment;
+    res.locals.messages = req.session.flash;
     next();
 });
 
-app.locals.moment = moment;
+// We clean the flash session each request.
+app.get('/*', ( req, res, next ) => {
+    req.session.flash = [];
+    next();
+});
 
 // Carregamos coisas importantes usando o Express-load.
-load('models').then('controllers').then('routes').then('api/routes').into(app);
+load('models').then('controllers').then('routes').then('api/routes').into( app );
 
 // Conexao com o MongoDB
 mongoose.Promise = global.Promise;
@@ -74,7 +79,7 @@ app.use( ( req, res, next ) => {
 });
 
 // Error handler just for API routes.
-app.use("/api", ( err, req, res, next ) => {
+app.use('/api', ( err, req, res, next ) => {
     res.status( err.status || 500 );
     res.json({
         status: false,
@@ -91,7 +96,7 @@ app.use( ( err, req, res, next ) => {
 
         // Debug.
         if( app.get('env') == 'development');
-            res.status( err.statusCode ).send( err.message );
+            res.status( err.statusCode || 500 ).send( err.message );
 
         // Fail quietly.
         res.end();

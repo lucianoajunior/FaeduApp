@@ -1,0 +1,26 @@
+extends ../layout
+
+block content
+    div(class="container")
+        h3(class="lighter mt-4") Visualizar professor
+        a(href="/admin/professores/editar/#{user._id}"  class="btn btn-sm btn-primary") Editar
+
+        div(class="row mt-3")
+            div(class="col-md-6")
+                table(class="table table-striped")
+                    thead
+                        th Opção:
+                        th Valor:
+                    tbody
+                        tr
+                            td Nome:
+                            td #{user.name}
+                        tr
+                            td Organização:
+                            td #{user.organization}
+                        tr
+                            td E-mail:
+                            td #{user.email}
+                        tr
+                            td Senha:
+                            td ***********

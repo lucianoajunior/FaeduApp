@@ -47,7 +47,7 @@ a.navbar-brand {
 }
 
 .navbar-nav .nav-item.active a {
-    color:#007bff !important;
+    color:#007bff;
 }
 
 .wrapper {
@@ -128,4 +128,15 @@ h3.lighter {
 
 #page-error span#sadly {
     font-size:100px;
+}
+
+.wrapper-logged {
+    background-color:#0057ff;
+    color:#fff;
+    font-size: 13px;
+    padding:15px 0;    
+}
+
+.wrapper-logged .navbar-light .navbar-nav .nav-link {
+    color:#fff;
 }

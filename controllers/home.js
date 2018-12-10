@@ -1,10 +1,8 @@
 module.exports = ( app ) => {
 
-    var HomeController = {
+    return {
         index: ( req, res ) => {
             res.render('home/index');
         }
     }
-    
-    return HomeController;
 }

@@ -1,0 +1,37 @@
+extends ../layout
+
+block content
+    div(class="container")
+        h3(class="lighter mt-4") Suas submissões
+
+        include ../partials/messages
+
+        p(class="mt-2")
+            b Total de registros: 
+            span #{ submissions.length } registro(s)
+
+        if submissions.length > 0
+            table(class="table table-striped")
+                thead
+                    tr
+                        th Exercício
+                        th Autor
+                        th Tipo
+                        th Descrição
+                        th Data             
+                        th Ações
+                tbody
+                    each submission in submissions
+                        tr
+                            td #{submission.exercise.title}
+                            td #{submission.exercise.author.name} (#{submission.exercise.author.organization})
+                            if submission.exercise.type == 1
+                                td Diagrama de Caso de Uso
+                            else
+                                td Diagrama de Classe
+                            td #{submission.exercise.description}
+                            td #{ moment( submission.date ).format('DD/MM/YYYY HH:mm') }
+                            td 
+                                a(href="/admin/submissoes/visualizar/#{submission._id}", class="btn btn-sm btn-primary mr-1") Visualizar
+        else
+            p Nenhum registro encontrado!

@@ -1,31 +1,35 @@
 module.exports = ( app ) => {
 
-    var Usuario = app.models.usuario;
+    const Users = app.models.users;
 
-    var LoginController = {
+    return {
         index: ( req, res ) => {
             res.render('login');
         },
-        autenticar: ( req, res ) => {
+        authenticate: ( req, res ) => {
             
-            Usuario.findOne({
-                'email': req.body.email,
-                'password': req.body.password
+            Users.findOne({
+                email: req.body.email,
+                password: req.body.password
             }, ( err, data ) => {
 
                 if( err || ! data ) {
                     req.flash('error', 'Dados inválidos. Por favor, tente novamente.');
-                    res.redirect('/login');
+
+                    if( req.body.level == 1 ) {
+                        res.redirect('/admin');
+                    } else {
+                        res.redirect('/login');
+                    }
                 }
 
-                if( data ) {
-                    // Criamos as sessões.
-                    req.session.isLogged = true;
-                    req.session.nome = data.nome;
-                    req.session.email = data.email;
+                req.session.isLogged = true;
+                req.session._id = data._id;
+                req.session.name = data.name;
+                req.session.email = data.email;
+                req.session.level = data.level;
 
-                    res.redirect('/exercicios');
-                }
+                res.redirect( ( data.level == 1 ) ? '/admin/painel' : '/painel');
             });
         },
         logout: ( req, res ) => {
@@ -33,6 +37,4 @@ module.exports = ( app ) => {
             res.redirect("/");
         }
     }
-
-    return LoginController;
 }

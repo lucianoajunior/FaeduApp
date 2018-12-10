@@ -6,10 +6,14 @@ block content
     h3 Entrar no sistema
     p Informe os dados para acessar a plataforma.
 
+    include partials/messages
+
     div(class="form-group")
         input(type="email", class="form-control", placeholder="Digite o e-mail...", name="email", autofocus, required )
 
     div(class="form-group")
         input(type="password", class="form-control", placeholder="Digite a senha...", name="password", required )
+
+    input(type="hidden", name="level", value = level )
 
     button(type="submit", class="btn btn-primary btn-block") Entrar

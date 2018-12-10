@@ -1,0 +1,35 @@
+extends ../layout
+
+block content
+
+    div(class="container")
+        h3(class="lighter mt-4") Professores
+
+        include ../partials/messages
+
+        a(href="/admin/professores/cadastrar"  class="btn btn-sm btn-primary") Cadastrar
+
+        p(class="mt-2")
+            b Total de registros: 
+            span #{ users.length } registro(s)
+
+        if users.length > 0
+            table(class="table table-striped")
+                thead
+                    tr
+                        th Nome
+                        th E-mail
+                        th Instituição
+                        th Ações
+                tbody
+                    each user in users
+                        tr
+                            td #{user.name}
+                            td #{user.email}
+                            td #{user.organization}
+                            td 
+                                a(href="/admin/professores/visualizar/#{user._id}", class="btn btn-sm btn-primary mr-1") Visualizar
+                                a(href="/admin/professores/editar/#{user._id}", class="btn btn-sm btn-secondary mr-1") Editar
+                                a(href="/admin/professores/remover/#{user._id}", class="btn btn-sm btn-danger mr-1") Remover
+        else
+            p Nenhum registro encontrado!
