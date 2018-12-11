@@ -100,6 +100,7 @@ module.exports = ( app ) => {
                     return next( err );
 
                 const r = {
+                    _id: data._id,
                     author: data.author,
                     exercise: data.exercise,
                     json: JSON.stringify( data.json ),
