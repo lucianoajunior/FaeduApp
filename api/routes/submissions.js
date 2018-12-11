@@ -99,14 +99,14 @@ module.exports = ( app ) => {
                 if( err )
                     return next( err );
 
-                const asd = {
+                const r = {
                     author: data.author,
                     exercise: data.exercise,
                     json: JSON.stringify( data.json ),
                     date: data.date
                 };
     
-                return res.status( 200 ).json( data );
+                return res.status( 200 ).json( r );
             });
         });
     });
