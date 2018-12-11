@@ -12,6 +12,4 @@ module.exports = ( app ) => {
 
     app.route('/correcao/:id')
         .get( Submissions.correct );
-
-
 }

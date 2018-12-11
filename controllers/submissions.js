@@ -3,6 +3,9 @@ module.exports = ( app ) => {
     const Submissions = app.models.submissions;
     const Exercises = app.models.exercises;
 
+    const correctUseCaseDiagram = require('../helper/correctUseCaseDiagram');
+    const correctClassDiagram = require('../helper/correctClassDiagram');
+
     return {
         index: ( req, res, next ) => {
 
@@ -50,17 +53,26 @@ module.exports = ( app ) => {
         },
         correct: ( req, res, next ) => {
 
-            const correctDiagram = require('../helper/correctDiagram');
-
             Submissions.findOne({
                 _id: req.params.id
             })
-            .then( ( submission ) => {
+            .then( ( submission, err ) => {
+                
+                if( err )
+                    return next( err );
+
                 Exercises.findOne({
                     _id: submission.exercise
                 })
-                .then( ( exercise ) => {
-                    const correction = correctDiagram( exercise, submission );
+                .then( ( exercise, err ) => {
+                    
+                    if( err )
+                        return next( err );
+
+                    let correction = ( exercise.type == 1 )
+                        ? correctUseCaseDiagram( exercise, submission )
+                        : correctClassDiagram( exercise, submission );
+
                     res.json( correction );
                 });
             });

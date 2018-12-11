@@ -1,7 +1,11 @@
 module.exports = ( app ) => {
     
     const Submissions = app.models.submissions;
+    const Exercises = app.models.exercises;
     const VerifyToken = require('../middleware/VerifyToken');
+
+    const correctUseCaseDiagram = require('../../helper/correctUseCaseDiagram');
+    const correctClassDiagram = require('../../helper/correctClassDiagram');
 
     app.get('/api/submissions', VerifyToken, ( req, res, next ) => {
 
@@ -70,6 +74,36 @@ module.exports = ( app ) => {
             return res.status( 200 ).json({
                 status: true,
                 message: 'Submission registered successfully!'
+            });
+        });
+    });
+
+    app.get('/api/correct/:id', VerifyToken, ( req, res, next ) => {
+
+        Submissions.findOne({
+            _id: req.params.id
+        })
+        .then( ( submission, err ) => {
+
+            if( err )
+                return next( err );
+
+            Exercises.findOne({
+                _id: submission.exercise
+            })
+            .then( ( exercise, err ) => {
+
+                if( err )
+                    return next( err );
+
+                let correction = ( exercise.type == 1 )
+                    ? correctUseCaseDiagram( exercise, submission )
+                    : correctClassDiagram( exercise, submission );
+                                
+                res.status( 200 ).json({
+                    status: true,
+                    errors: correction
+                });
             });
         });
     });
