@@ -98,6 +98,13 @@ module.exports = ( app ) => {
     
                 if( err )
                     return next( err );
+
+                const asd = {
+                    author: data.author,
+                    exercise: data.exercise,
+                    json: JSON.stringify( data.json ),
+                    date: data.date
+                };
     
                 return res.status( 200 ).json( data );
             });
