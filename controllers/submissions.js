@@ -73,10 +73,12 @@ module.exports = ( app ) => {
                         ? correctUseCaseDiagram( exercise, submission )
                         : correctClassDiagram( exercise, submission );
 
+                    console.log( correction );
+
                     res.render('submissions/correct', {
                         exercise: exercise,
                         submission: submission,
-                        correction: correction
+                        errors: correction
                     });
                 });
             });

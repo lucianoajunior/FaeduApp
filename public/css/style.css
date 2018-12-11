@@ -151,3 +151,21 @@ h3.lighter {
     padding: 20px 0px;
     border-bottom: 2px solid #b7b7b7;
 }
+
+.nav-tabs {
+    border:0;
+}
+
+.nav-tabs .nav-link.active {
+    background: #007bff;
+    border-radius: 0;
+    border: 1px solid transparent;
+    color: #fff;
+}
+
+.nav-tabs .nav-link {
+    border: 1px solid #dfdfdf;
+    border-radius: 0;
+    color: #000;
+    padding: 15px 20px;
+}

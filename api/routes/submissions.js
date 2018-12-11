@@ -52,7 +52,13 @@ module.exports = ( app ) => {
             _id: req.params.id
         })
         .populate('author')
-        .populate('exercise')
+        .populate({
+            path: 'exercise',
+            populate: {
+                path: 'author',
+                model: 'User'
+            }
+        })
         .exec( ( err, data ) => {
 
             if( err )
@@ -75,7 +81,13 @@ module.exports = ( app ) => {
                 _id: s._id
             })
             .populate('author')
-            .populate('exercise')
+            .populate({
+                path: 'exercise',
+                populate: {
+                    path: 'author',
+                    model: 'User'
+                }
+            })
             .exec( ( err, data ) => {
     
                 if( err )
