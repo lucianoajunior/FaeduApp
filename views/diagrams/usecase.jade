@@ -1,0 +1,49 @@
+extends ../layout
+
+block diagram
+
+    div(class="wrapper-diagram")
+        div(class="container")
+            div(class="row")
+                div(class="col-md-6") #{exercise.title}
+                div(class="col-md-6 text-right")
+                    button(class="btn btn-sm btn-secondary mr-2") Ler o texto
+                    button(class="btn btn-sm btn-light mr-2" onclick="save()") Salvar como .png
+                    button(class="btn btn-sm btn-primary" onclick="generateURL()") Salvar
+    div(class="wrapper")
+        div(id="nav-actions")
+            button(id="pointer" onclick="changeAction('pointer')")
+                img(src="/svg/cursor.svg")
+
+            button(id="actor" onclick="changeAction('actor')")
+                img(src="/svg/actor.svg")
+
+            button(id="usecase" onclick="changeAction('usecase')")
+                img(src="/svg/case.svg")
+
+            button(id="association" onclick="changeAction('association')")
+                img(src="/svg/arrow.svg")
+
+            button(id="annotation" onclick="changeAction('annotation')")
+                img(src="/svg/annotation.svg")
+
+            button(id="include" onclick="changeAction('include')")
+                img(src="/svg/include.svg")
+
+            button(id="extend" onclick="changeAction('extend')")
+                img(src="/svg/extend.svg")
+
+        div(id="board")
+
+block scripts
+    script(src="/js/jquery.min.js")
+    script(src="/p5js/p5.min.js")
+    script(src="/diagrams/sketch.js")
+    script(src="/diagrams/Actor.js")
+    script(src="/diagrams/Annotation.js")
+    script(src="/diagrams/Association.js")
+    script(src="/diagrams/Extend.js")
+    script(src="/diagrams/Generalization.js")
+    script(src="/diagrams/Include.js")
+    script(src="/diagrams/Sys.js")
+    script(src="/diagrams/UseCase.js")

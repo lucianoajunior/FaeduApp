@@ -388,16 +388,14 @@ function changeAction( action ) {
 
 function generateURL() {
 
-    $.ajax({
-        url: '/diagramas/caso-de-uso/salvar',
-        method: "POST",
-        dataType: "JSON",
-        data: {
-            conteudo: generateJSON()
-        },
-        success: function( response ) {
-            console.log( response );
-        }
+    let url = window.location.href;
+    let id = url.substring( url.lastIndexOf('/') + 1 );
+
+    $.post( window.location.href, {
+        id: id,
+        json: generateJSON()
+    }, function( data, status ) {
+        console.log( data );
     });
 }
 
@@ -422,56 +420,44 @@ function generateJSON() {
 
     let json = new Object();
 
-    json.tipo       = 'UseCase';
-    json.problema   = 'Qual é o Use Case?';
     json.altura     = parseInt( canvas.getAttribute('width') );
     json.largura    = parseInt( canvas.getAttribute('height') );
 
-    json.diagrama   = new Object();
-
     // Criamos os Use Cases.
     if( UseCases.length > 0 ) {
-
-        json.diagrama.cases = new Array();       
+        json.cases = new Array();       
 
         UseCases.forEach( function( obj ) {
             Case = new Object();
             
             Case.id = obj.id;
             Case.nome = obj.name;
-
-            Case.atributos = new Object();
-            Case.atributos.x = parseInt( obj.x );
-            Case.atributos.y = parseInt( obj.y );
-            
-            json.diagrama.cases.push( Case );
+            Case.x = parseInt( obj.x );
+            Case.y = parseInt( obj.y );            
+            json.cases.push( Case );
         });
     }
 
     if( Actors.length > 0 ) {
         
-        json.diagrama.atores = new Array();       
+        json.atores = new Array();       
 
         Actors.forEach( function( obj ) {
             Actor = new Object();
             
             Actor.id = obj.id;
             Actor.nome = obj.name;
-
-            Actor.atributos = new Object();
-            Actor.atributos.x = parseInt( obj.x );
-            Actor.atributos.y = parseInt( obj.y );
+            Actor.x = parseInt( obj.x );
+            Actor.y = parseInt( obj.y );
             
-            json.diagrama.atores.push( Actor );
+            json.atores.push( Actor );
         });
     }
 
     if( Associations.length > 0 || Includes.length > 0 || Extends.length > 0 ) {
 
-        json.diagrama.ligacoes = new Object();
-
         if( Associations.length > 0 ) {
-            json.diagrama.ligacoes.associacao = new Array();
+            json.associacoes = new Array();
 
             Associations.forEach( function( obj ) {
                 Associacao = new Object();
@@ -479,12 +465,12 @@ function generateJSON() {
                 Associacao.de = obj.from;
                 Associacao.para = obj.to;
 
-                json.diagrama.ligacoes.associacao.push( Associacao );
+                json.associacoes.push( Associacao );
             });
         }
         
         if( Includes.length > 0 ) {
-            json.diagrama.ligacoes.include = new Array();
+            json.includes = new Array();
 
             Includes.forEach( function( obj ) {
                 Include = new Object();
@@ -492,12 +478,12 @@ function generateJSON() {
                 Include.de = obj.from;
                 Include.para = obj.to;
 
-                json.diagrama.ligacoes.include.push( Include );
+                json.includes.push( Include );
             });
         }
 
         if( Extends.length > 0 ) {
-            json.diagrama.ligacoes.extend = new Array();
+            json.extends = new Array();
 
             Extends.forEach( function( obj ) {
                 Extend = new Object();
@@ -505,30 +491,26 @@ function generateJSON() {
                 Extend.de = obj.from;
                 Extend.para = obj.to;
 
-                json.diagrama.ligacoes.extend.push( Extend );
+                json.extends.push( Extend );
             });
         }
     }
 
     if( Annotations.length > 0 ) {
         
-        json.diagrama.observacoes = new Array();       
+        json.observacoes = new Array();       
 
         Annotations.forEach( function( obj ) {
             Annotation = new Object();
             
             Annotation.id = obj.id;
             Annotation.descricao = obj.text;
-
-            Annotation.atributos = new Object();
-            Annotation.atributos.x = parseInt( obj.x );
-            Annotation.atributos.y = parseInt( obj.y );
+            Annotation.x = parseInt( obj.x );
+            Annotation.y = parseInt( obj.y );
             
-            json.diagrama.observacoes.push( Annotation );
+            json.observacoes.push( Annotation );
         });
     }
-
-
 
     let jsonString = JSON.stringify( json );
 

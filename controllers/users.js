@@ -97,7 +97,7 @@ module.exports = ( app ) => {
                 res.redirect('/admin/professores');   
             });
         },
-        asd: ( req, res, next ) => {
+        teachers: ( req, res, next ) => {
             Users.find({
                 level: 2
             }, ( err, result ) => {

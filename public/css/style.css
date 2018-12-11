@@ -56,8 +56,9 @@ a.navbar-brand {
 }
 
 #nav-actions {
-    width:10%;
-    background-color: #484848;
+    width: 150px;
+    background-color: #007bff;
+    color: #fff;
 }
 
 #nav-actions button {
@@ -66,12 +67,16 @@ a.navbar-brand {
     color: #9c9c9c;
     font-size: 25px;
     display: flex;
-    margin: 0 auto;
+    margin: 25px auto;
     text-align: center;
     outline: none;
 }
 
-#nav-actions button.selected {
+#nav-actions img {
+    width:30px;
+}
+
+#nav-actions button.selected img {
     color: yellow;
 }
 
@@ -139,4 +144,10 @@ h3.lighter {
 
 .wrapper-logged .navbar-light .navbar-nav .nav-link {
     color:#fff;
+}
+
+.wrapper-diagram {
+    background-color: #fff;
+    padding: 20px 0px;
+    border-bottom: 2px solid #b7b7b7;
 }

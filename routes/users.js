@@ -7,5 +7,5 @@ module.exports = ( app ) => {
         .post( Users.insert );
 
     app.route('/professores')
-        .get( Users.asd );
+        .get( Users.teachers );
 }

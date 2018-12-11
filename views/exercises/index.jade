@@ -1,0 +1,29 @@
+extends ../layout
+
+block content
+    div(class="container")
+        h3(class="lighter mt-4") Exercícios
+
+        p(class="mt-2")
+            b Total de registros: 
+            span #{ exercises.length } registro(s)
+    
+        if exercises.length > 0
+            table(class="table table-striped")
+                thead
+                    tr
+                        th Título
+                        th Tipo
+                        th Descrição
+                        th Ações
+                tbody
+                    each exercise in exercises
+                        tr
+                            td #{exercise.title}
+                            td #{exercise.type}
+                            td #{exercise.description}
+                            td 
+                                a(href="/exercicios/resolver/#{exercise._id}", class="btn btn-sm btn-primary mr-1") Resolver
+        else
+            p Nenhum registro encontrado!
+

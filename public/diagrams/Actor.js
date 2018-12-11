@@ -89,10 +89,6 @@ class Actor {
 	}
 
 	getCenter() {
-
-		console.log( mouseX - this.x );
-		console.log( mouseY - this.y );
-
 		return {
 			"x": this.x,
 			"y": this.y

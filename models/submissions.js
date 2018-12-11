@@ -11,7 +11,7 @@ module.exports = () => {
             ref: 'Exercise'
         },
         json: {
-            type: String,
+            type: Object,
         },
         date: {
             type: Date,
