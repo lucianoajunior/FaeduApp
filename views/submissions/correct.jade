@@ -1,0 +1,29 @@
+extends ../layout
+
+block content
+	div(class="container")
+		div(class="row pt-4 pb-4")
+			if ! correction.errors
+				div(class="col-md-6 text-center")
+					p Encontramos algumas diferenças comparadas ao diagrama feito pelo professor. Todavia, pode ser que seu diagrama não esteja errado. Portanto, verifique melhor na aba de correção.
+
+				div(class="col-md-6 text-center")
+					button(class="btn btn-lg btn-secondary mt-3") Ver pontos da correção
+			else
+				div(class="col-md-6 offset-md-3 text-center")
+					p(class="pb-0") O seu diagrama está correto!
+					p(class="pb-0") Verifique na aba de correção o diagrama feito pelo professor.
+
+		div(class="row")
+			ul(class="nav nav-tabs" id="myTab" role="tablist")
+				li(class="nav-item")
+					a(class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true") Home
+				li(class="nav-item")
+					a(class="nav-link active" id="home-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="true") Profile
+				li(class="nav-item")
+					a(class="nav-link active" id="home-tab" data-toggle="tab" href="#asd" role="tab" aria-controls="asd" aria-selected="true") ASD					
+
+			div(class="tab-content" id="myTabContent")
+				div(class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab") aaaaaaaaaaaa
+				div(class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab") asdddddddddddddddddd
+				div(class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab") asdwwwwwwwwwwwwwwwww

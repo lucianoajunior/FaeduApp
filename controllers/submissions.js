@@ -45,10 +45,7 @@ module.exports = ( app ) => {
                 if( err )
                     return next( err );
 
-                res.status( 200 ).json({
-                    status: true,
-                    message: "Exercício submetido com sucesso!"
-                });
+                res.status( 200 ).json( s );
             });
         },
         correct: ( req, res, next ) => {
@@ -73,7 +70,11 @@ module.exports = ( app ) => {
                         ? correctUseCaseDiagram( exercise, submission )
                         : correctClassDiagram( exercise, submission );
 
-                    res.json( correction );
+                    res.render('submissions/correct', {
+                        exercise: exercise,
+                        submission: submission,
+                        correction: correction
+                    });
                 });
             });
         }
