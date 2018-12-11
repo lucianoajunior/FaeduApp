@@ -24,11 +24,11 @@ block content
 		div(class="row")
 			div(class="tab-content" id="myTabContent")
 				div(class="tab-pane fade show active" id="submissao" role="tabpanel" aria-labelledby="home-tab")
-					p submi
+					div(id="board-submit")
 				div(class="tab-pane fade" id="correcao" role="tabpanel" aria-labelledby="profile-tab")
-					p corr
+					div(id="board-correction")
 
-	if errors
+	if errors.length > 0
 		div(class="modal fade" id="correction-modal" tabindex="-1" role="dialog")
 			div(class="modal-dialog modal-dialog-centered" role="document")
 				div(class="modal-content")
@@ -38,8 +38,21 @@ block content
 							span(aria-hidden="true") &times;
 
 					div(class="modal-body")
-						each error in correction.errors
-							p #{error}
+						each error in errors
+							p(class="text-danger font-weight-bold") #{error}
 
 					div(class="modal-footer")
 						button(type="button" class="btn btn-secondary" data-dismiss="modal") Fechar
+
+block scripts
+	script(src="/js/jquery.min.js")
+	script(src="/p5js/p5.min.js")
+	script(src="/diagrams/correction.js")
+	script(src="/diagrams/Actor.js")
+	script(src="/diagrams/Annotation.js")
+	script(src="/diagrams/Association.js")
+	script(src="/diagrams/Extend.js")
+	script(src="/diagrams/Generalization.js")
+	script(src="/diagrams/Include.js")
+	script(src="/diagrams/Sys.js")
+	script(src="/diagrams/UseCase.js")

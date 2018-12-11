@@ -98,7 +98,7 @@ module.exports = ( app ) => {
         });
     });
 
-    app.get('/api/correct/:id', VerifyToken, ( req, res, next ) => {
+    app.get('/api/correct/:id', ( req, res, next ) => {
 
         Submissions.findOne({
             _id: req.params.id

@@ -169,3 +169,7 @@ h3.lighter {
     color: #000;
     padding: 15px 20px;
 }
+
+#board {
+    height:500px;
+}

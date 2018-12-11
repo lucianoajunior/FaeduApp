@@ -82,6 +82,9 @@ module.exports = ( app ) => {
                     });
                 });
             });
+        },
+        asd: ( req, res, next ) => {
+            return res.status( 200 ).json({asda:'123123'});
         }
     }
 }
