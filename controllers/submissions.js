@@ -1,6 +1,7 @@
 module.exports = ( app ) => {
 
     const Submissions = app.models.submissions;
+    const Exercises = app.models.exercises;
 
     return {
         index: ( req, res, next ) => {
@@ -44,6 +45,23 @@ module.exports = ( app ) => {
                 res.status( 200 ).json({
                     status: true,
                     message: "Exercício submetido com sucesso!"
+                });
+            });
+        },
+        correct: ( req, res, next ) => {
+
+            const correctDiagram = require('../helper/correctDiagram');
+
+            Submissions.findOne({
+                _id: req.params.id
+            })
+            .then( ( submission ) => {
+                Exercises.findOne({
+                    _id: submission.exercise
+                })
+                .then( ( exercise ) => {
+                    const correction = correctDiagram( exercise, submission );
+                    res.json( correction );
                 });
             });
         }

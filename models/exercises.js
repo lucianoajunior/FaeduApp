@@ -18,7 +18,7 @@ module.exports = () => {
             trim: true
         },
         json: {
-            type: String
+            type: Object
         }
     }, {
         versionKey: false

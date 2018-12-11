@@ -33,11 +33,6 @@ module.exports = ( app ) => {
                     exercise: result
                 });
             });
-        },
-        correct: ( req, res ) => {
-            res.status( 200 ).json({
-                asd: 'asd'
-            });
         }
     }
 }

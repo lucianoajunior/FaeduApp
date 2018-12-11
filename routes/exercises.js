@@ -11,7 +11,7 @@ module.exports = ( app ) => {
         .post( Submissions.submit );
 
     app.route('/correcao/:id')
-        .get( Exercises.correct );
+        .get( Submissions.correct );
 
 
 }
