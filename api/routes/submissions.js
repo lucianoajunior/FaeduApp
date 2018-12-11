@@ -70,7 +70,13 @@ module.exports = ( app ) => {
 
     app.post('/api/submissions', ( req, res, next ) => {
 
-        const s = new Submissions( req.body );
+        const params = {
+            author: req.body.author,
+            exercise: req.body.exercise,
+            json: ( typeof req.body.json == 'string' ) ? JSON.parse( req.body.json ) : req.body.json
+        };
+
+        const s = new Submissions( params );
 
         s.save( ( err ) => {
 
