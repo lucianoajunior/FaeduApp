@@ -62,18 +62,26 @@ module.exports = ( app ) => {
         });
     });
 
-    app.post('/api/submissions', VerifyToken, ( req, res, next ) => {
+    app.post('/api/submissions', ( req, res, next ) => {
 
         const s = new Submissions( req.body );
 
         s.save( ( err ) => {
 
-            if( err ) 
+            if( err )
                 return next( err );
 
-            return res.status( 200 ).json({
-                status: true,
-                message: 'Submission registered successfully!'
+            Submissions.findOne({
+                _id: s._id
+            })
+            .populate('author')
+            .populate('exercise')
+            .exec( ( err, data ) => {
+    
+                if( err )
+                    return next( err );
+    
+                return res.status( 200 ).json( data );
             });
         });
     });

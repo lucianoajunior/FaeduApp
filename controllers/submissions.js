@@ -45,7 +45,10 @@ module.exports = ( app ) => {
                 if( err )
                     return next( err );
 
-                res.status( 200 ).json( s );
+                res.status( 200 ).json({
+                    status: true,
+                    message: "Exercício submetido com sucesso!"
+                });
             });
         },
         correct: ( req, res, next ) => {
