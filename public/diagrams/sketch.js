@@ -394,10 +394,8 @@ function generateURL() {
     $.post( window.location.href, {
         id: id,
         json: generateJSON()
-    }, function( data, status ) {
-
-        
-        console.log( data );
+    }, function( data, status ) {      
+        window.location.href = '/correcao/' + data.id;
     });
 }
 
@@ -517,4 +515,20 @@ function generateJSON() {
     let jsonString = JSON.stringify( json );
 
     return jsonString;
+}
+
+function inserirDiagrama() {
+
+    let data = {
+        author: $('input[name="author"]').val(),
+        type: $('input[name="type"]').val(),
+        title: $('input[name="title"]').val(),
+        description: $('textarea[name="description"]').val(),
+        json: generateJSON()
+    };
+
+    $.post( window.location.href, data, function( result, status ) {
+        if( result.status )
+            window.location.href = '/seus-exercicios';
+    });
 }

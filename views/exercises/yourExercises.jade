@@ -1,0 +1,37 @@
+extends ../layout
+
+block content
+    div(class="container")
+        h3(class="lighter mt-4") Seus exercícios
+
+        a(href="/seus-exercicios/caso-de-uso/cadastrar" class="btn btn-sm btn-primary mr-2") Novo diagrama de caso de uso
+        a(href="/seus-exercicios/classe/cadastrar" class="btn btn-sm btn-secondary") Novo diagrama de classe
+
+        p(class="mt-2")
+            b Total de registros: 
+            span #{ exercises.length } registro(s)
+    
+        if exercises.length > 0
+            table(class="table table-striped")
+                thead
+                    tr
+                        th Título
+                        th Tipo
+                        th Descrição
+                        th Ações
+                tbody
+                    each exercise in exercises
+                        tr
+                            td #{exercise.title}
+                            td
+                                if exercise.type == 1
+                                    | Diagrama de Caso de Uso
+                                else 
+                                    | Diagrama de Classe
+                            td #{exercise.description}
+                            td 
+                                a(href="/seus-exercicios/visualizar/#{exercise._id}", class="btn btn-sm btn-primary mr-1") Visualizar
+                                a(href="/seus-exercicios/excluir/#{exercise._id}", class="btn btn-sm btn-danger mr-1") Excluir
+        else
+            p Nenhum registro encontrado!
+

@@ -5,21 +5,7 @@ header
                 nav(class="navbar navbar-expand-lg navbar-light")
                     a(class="navbar-brand" href="/")
                         img(src="/images/logo.png" alt="Logotipo FAEDU" name="Ferramenta de Auxílio ao Estudo de Diagramas da UML")
-
-                    button(class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-top" aria-expanded="false" aria-label="Toggle navigation")
-                        span(class="navbar-toggler-icon")
   
-                    div(class="collapse navbar-collapse" id="navbar-top")
-                        ul(class="navbar-nav")
-                            li(class="nav-item active")
-                                a(class="nav-link" href="#") Home
-                            li(class="nav-item")
-                                a(class="nav-link" href="#") Sobre
-                            li(class="nav-item")
-                                a(class="nav-link" href="#") Como?
-                            li(class="nav-item")
-                                a(class="nav-link" href="#") Por quê?
-
             if ! session.isLogged
                 div(class="col-md-6 text-right")
                     span(class="mr-3") É estudante?
@@ -41,11 +27,15 @@ if session.isLogged
                         div(class="collapse navbar-collapse" id="navbar-logged")
                             ul(class="navbar-nav ml-auto")
 
-                                if session.level == 2
+                                if session.level == 1
                                     li(class="nav-item")
                                         a(class="nav-link" href="/admin/painel") Início
                                     li(class="nav-item")
                                         a(class="nav-link" href="/admin/professores") Professores
+
+                                if session.level == 2
+                                    li(class="nav-item")
+                                        a(class="nav-link" href="/seus-exercicios") Seus exercícios
 
                                 if session.level == 3
                                     li(class="nav-item")

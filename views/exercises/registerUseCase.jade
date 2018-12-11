@@ -1,15 +1,20 @@
 extends ../layout
 
-block diagram
+block content
+    div(class="container")
+        h3(class="lighter mt-4") Cadastrar caso de uso
 
-    div(class="wrapper-diagram")
-        div(class="container")
-            div(class="row")
-                div(class="col-md-6") #{exercise.title}
-                div(class="col-md-6 text-right")
-                    button(class="btn btn-sm btn-secondary mr-2" data-toggle="modal" data-target="#text-modal") Ler o texto
-                    button(class="btn btn-sm btn-light mr-2" onclick="save()") Salvar como .png
-                    button(class="btn btn-sm btn-primary" onclick="generateURL()") Salvar
+        input(type="hidden" name="author" value="#{author}")
+        input(type="hidden" name="type" value="#{type}")
+
+        div(class="form-group")
+            label Título:
+            input(type="text", class="form-control",name="title", placeholder="Digite o título...", required)
+
+        div(class="form-group")
+            label Descrição:
+            textarea(class="form-control" name="description" placeholder="Digite aqui a descrição...")
+
     div(class="wrapper")
         div(id="nav-actions")
             button(id="pointer" onclick="changeAction('pointer')")
@@ -33,21 +38,10 @@ block diagram
             button(id="extend" onclick="changeAction('extend')")
                 img(src="/svg/extend.svg")
 
-        div(id="board")
+        div(id="board" class="bordered")
 
-        div(class="modal fade" id="text-modal" tabindex="-1" role="dialog")
-			div(class="modal-dialog modal-dialog-centered" role="document")
-				div(class="modal-content")
-					div(class="modal-header")
-						h5(class="modal-title") Correção
-						button(type="button" class="close" data-dismiss="modal" aria-label="Close")
-							span(aria-hidden="true") &times;
-
-					div(class="modal-body")
-						| asdasda sdasdasd
-
-					div(class="modal-footer")
-						button(type="button" class="btn btn-secondary" data-dismiss="modal") Fechar
+    div(class="container")
+        button(type="submit", class="btn btn-sm btn-primary" onclick="inserirDiagrama()") Cadastrar
 
 block scripts
     script(src="/js/jquery.min.js")

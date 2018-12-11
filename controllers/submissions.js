@@ -47,6 +47,7 @@ module.exports = ( app ) => {
 
                 res.status( 200 ).json({
                     status: true,
+                    id: s._id,
                     message: "Exercício submetido com sucesso!"
                 });
             });
@@ -72,8 +73,6 @@ module.exports = ( app ) => {
                     let correction = ( exercise.type == 1 )
                         ? correctUseCaseDiagram( exercise, submission )
                         : correctClassDiagram( exercise, submission );
-
-                    console.log( correction );
 
                     res.render('submissions/correct', {
                         exercise: exercise,

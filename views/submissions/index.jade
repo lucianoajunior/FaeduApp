@@ -32,6 +32,6 @@ block content
                             td #{submission.exercise.description}
                             td #{ moment( submission.date ).format('DD/MM/YYYY HH:mm') }
                             td 
-                                a(href="/admin/submissoes/visualizar/#{submission._id}", class="btn btn-sm btn-primary mr-1") Visualizar
+                                a(href="/correcao/#{submission._id}", class="btn btn-sm btn-primary mr-1") Visualizar
         else
             p Nenhum registro encontrado!

@@ -7,8 +7,8 @@ correctUseCaseDiagram = ( exercise, submission ) => {
 
 	const errors = [];
 
-	const e = JSON.parse( JSON.stringify( exercise.json ) );
-	const s = JSON.parse( JSON.stringify( submission.json ) )
+	const e = JSON.parse( eval( JSON.stringify( ( exercise.json ) ) ) );
+	const s = JSON.parse( eval( JSON.stringify( ( submission.json ) ) ) );
 
 	/**
 	 * Correção dos cases.
