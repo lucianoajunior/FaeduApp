@@ -21,7 +21,20 @@ class UseCase {
 		this.height = 75;
 	}
 
-	draw() {
+	draw( sketch = null ) {
+
+		if( sketch ) {
+			sketch.noStroke();
+			sketch.fill( this.backgroundColor );
+			sketch.ellipse( this.x, this.y, this.width, this.height );
+
+			sketch.noStroke();
+			sketch.textAlign('center');
+			sketch.textSize( this.textSize );
+			sketch.fill( this.color );
+			sketch.text( this.name, this.x, this.y );
+			return;
+		}
 
 		if( ! this.name ) return;
 
@@ -34,6 +47,8 @@ class UseCase {
 			strokeWeight( this.stroke );
 		}
 		
+		
+
 		fill( this.backgroundColor );
 		ellipse( this.x, this.y, this.width, this.height );
 
