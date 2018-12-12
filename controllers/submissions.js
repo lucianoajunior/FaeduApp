@@ -74,7 +74,8 @@ module.exports = ( app ) => {
                         ? correctUseCaseDiagram( exercise, submission )
                         : correctClassDiagram( exercise, submission );
 
-                    res.render('submissions/correct', {
+                    const f = (  exercise.type == 1 ) ? 'correct' : 'correctClasse';
+                    res.render('submissions/' + f, {
                         exercise: exercise,
                         submission: submission,
                         errors: correction

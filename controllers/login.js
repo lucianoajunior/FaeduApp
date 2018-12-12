@@ -31,7 +31,13 @@ module.exports = ( app ) => {
                 req.session.email = data.email;
                 req.session.level = data.level;
 
-                res.redirect( ( data.level == 1 ) ? '/admin/painel' : '/painel');
+                if( data.level == 1 ) {
+                    res.redirect('/admin/painel');
+                } else if( data.level == 2 ) {
+                    res.redirect('/seus-exercicios');
+                } else if( data.level == 3 ) {
+                    res.redirect('/professores');
+                }
             });
         },
         logout: ( req, res ) => {

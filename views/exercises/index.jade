@@ -20,7 +20,11 @@ block content
                     each exercise in exercises
                         tr
                             td #{exercise.title}
-                            td #{exercise.type}
+                            td
+                                if exercise.type == 1
+                                    | Diagrama de Caso de Uso
+                                else
+                                    | Diagrama de Classes
                             td #{exercise.description}
                             td 
                                 a(href="/exercicios/detalhes/#{exercise._id}", class="btn btn-sm btn-primary mr-1") Resolver

@@ -36,7 +36,28 @@ function setup() {
     sys = new Sys( displayWidth, displayHeight );
 }
 
+function generateURL() {
+
+    let url = window.location.href;
+    let id = url.substring( url.lastIndexOf('/') + 1 );
+
+    $.post( window.location.href, {
+        id: id,
+        json: generateJSON()
+    }, function( data, status ) {      
+        window.location.href = '/correcao/' + data.id;
+    });
+}
+
 function mouseClickedEvent() {
+
+    Classes.forEach( function( obj ) {
+        if( obj.buttonVar )
+            obj.addVar();
+
+        if( obj.buttonMethod )
+            obj.addMethod();
+    });
 
     Object.keys( Actions ).forEach( function( action ) {
 
@@ -170,5 +191,71 @@ function changeAction( action ) {
         Actions[ key ] = ( key == action ) ? true : false;
         document.getElementById( key ).classList.remove('selected');        
         if( key == action ) document.getElementById( action ).className += ' selected';
+    });
+}
+
+function generateJSON() {
+
+    let json = new Object();
+
+    json.altura     = parseInt( canvas.getAttribute('width') );
+    json.largura    = parseInt( canvas.getAttribute('height') );
+
+    if( Classes.length > 0 ) {
+        json.classes = new Array();  
+
+        Classes.forEach( function( obj ) {
+            Classe = new Object();
+            
+            Classe.id = obj.id;
+            Classe.nome = obj.name;
+            Classe.altura = obj.height;
+
+            Classe.x = parseInt( obj.x );
+            Classe.y = parseInt( obj.y );
+
+            if( obj.attributes.length > 0 ) {
+                Classe.atributos = obj.attributes;
+            }
+
+            if( obj.methods.length > 0 ) {
+                Classe.metodos = obj.methods;
+            }
+
+            json.classes.push( Classe );
+        });
+    }
+
+    if( Associations.length > 0 ) {
+        json.associacoes = new Array();  
+
+        Associations.forEach( function( obj ) {
+            Assoc = new Object();
+
+            Assoc.id = obj.id;
+            Assoc.de = obj.from;
+            Assoc.para = obj.to;
+
+            json.associacoes.push( Assoc );
+        });
+    }
+
+    let jsonString = JSON.stringify( json );
+    return jsonString;
+}
+
+function inserirDiagrama() {
+
+    let data = {
+        author: $('input[name="author"]').val(),
+        type: $('input[name="type"]').val(),
+        title: $('input[name="title"]').val(),
+        description: $('textarea[name="description"]').val(),
+        json: generateJSON()
+    };
+
+    $.post( window.location.href, data, function( result, status ) {
+        if( result.status )
+            window.location.href = '/seus-exercicios';
     });
 }

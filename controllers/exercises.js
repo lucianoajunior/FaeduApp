@@ -96,6 +96,27 @@ module.exports = ( app ) => {
                 });
             });
         },
+        saveClass: ( req, res, next ) => {
+
+            const data = {
+                author: req.body.author,
+                type: req.body.type,
+                title: req.body.title,
+                description: req.body.description,
+                json: JSON.parse( req.body.json )
+            };
+
+            const e = new Exercises( data );
+
+            e.save( ( err ) => {
+                if( err )
+                    return next( err );
+
+                res.status( 200 ).json({
+                    status: true   
+                });
+            });
+        },
         delete: ( req, res ) => {
 
             Exercises.remove({

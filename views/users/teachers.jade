@@ -10,10 +10,7 @@ block content
                     b Total de registros: 
                     span #{ users.length } registro(s)
             div(class="col-md-6")
-                form(class="mt-4 d-inline")
-                    input(type="text" class="form-control" placeholder="Digite aqui a sua pesquisa...")
-                    button(class="btn btn-sm btn-primary") Buscar
-
+                
         if users.length > 0
             table(class="table table-striped")
                 thead
