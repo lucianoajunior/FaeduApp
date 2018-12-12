@@ -42,9 +42,27 @@ module.exports = ( app ) => {
             if( ! data )
                 return res.status( 200 ).json({});
 
-            return res.status( 200 ).json( data );
+            const params = [];
+
+            data.forEach( ( elem ) => {
+                params.push({
+                    _id: elem.id,
+                    author: elem.author,
+                    exercise: {
+                        _id: elem.exercise._id,
+                        author: elem.exercise.author,
+                        type: elem.exercise.type,
+                        title: elem.exercise.title,
+                        description: elem.exercise.description,
+                        json: JSON.stringify( elem.exercise.json )
+                    },
+                    json: JSON.stringify( elem.json ),
+                    date: elem.date
+                });
+            });
+
+            return res.status( 200 ).json( params );
         });
-        
     });
 
     app.get('/api/submissions/:id', VerifyToken, ( req, res, next ) => {
