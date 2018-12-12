@@ -10,6 +10,9 @@ module.exports = ( app ) => {
         .get( Exercises.solve )
         .post( Submissions.submit );
 
+    app.route('/exercicios/detalhes/:id')
+        .get( Exercises.details );
+
     app.route('/correcao/:id')
         .get( Submissions.correct );
 

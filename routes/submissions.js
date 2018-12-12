@@ -6,5 +6,5 @@ module.exports = ( app ) => {
         .get( Submissions.index )
 
     app.route('/submissoes/:id')
-        .get( Submissions.asd );
+        .get( Submissions.details );
 }

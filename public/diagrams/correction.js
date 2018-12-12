@@ -10,40 +10,44 @@ let Includes        = [];
 let Extends         = [];
 let Annotations     = [];
 
-function preload() {
-    console.log('entrou');
+let url = window.location.href;
+let id = url.substring( url.lastIndexOf('/') + 1 );
 
-    fetch('/submissoes/asdasd', {
-        method: 'GET'
+fetch('/submissoes/' + id, { method: 'GET' })
+    .then( function( response ) {
+        if( response.status )
+            return response.json();
     })
-    .then(function(response) {
-      if(response.ok) return response.json();
-      throw new Error('Request failed.');
-    })
-    .then(function(data) {
-      if(data) {
-        // create a circle at the x, y coords
-        myCircle = new Circle(data.x, data.y);
-      }
-      else {
-        myCircle = new Circle(0, 0);
-      }
-    })
-    .catch(function(error) {
-      console.log(error);
+    .then( function( result ) {
+        start();
     });
+
+var s = function( sketch ) {
+
+    sketch.setup = function() {
+        sketch.createCanvas( 1140, 500 ).parent('board-submit');
+    };
+
+    sketch.draw = function() {
+        sketch.background(0);
+        sketch.rect(sketch.x, sketch.y, 50, 50);
+    };
+};
+  
+var myp5 = new p5(s);
+myp5.data = ['luciano'];
+
+
+function start() {
+    alert( 123 );
 }
 
-/**
- * Inicializamos o canvas principal.
- */
-function setup() {
-    let board = document.getElementById('board');
-    let canvas = createCanvas( 500, 500 );
-    canvas.mouseReleased( mouseClickedEvent );
-    canvas.parent('board-submit');
 
-    sys = new Sys( displayWidth, displayHeight );
+function preload() {
+    
+    
+
+    
 }
 
 function draw() {

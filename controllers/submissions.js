@@ -82,8 +82,30 @@ module.exports = ( app ) => {
                 });
             });
         },
-        asd: ( req, res, next ) => {
-            return res.status( 200 ).json({asda:'123123'});
+        details: ( req, res, next ) => {
+
+            Submissions.findOne({
+                _id: req.params.id
+            })
+            .then( ( submission, err ) => {
+                
+                if( err )
+                    return next( err );
+
+                Exercises.findOne({
+                    _id: submission.exercise
+                })
+                .then( ( exercise, err ) => {
+                    
+                    if( err )
+                        return next( err );
+
+                    return res.status( 200 ).json({
+                        exercise: exercise,
+                        submission: submission
+                    });
+                });
+            });
         }
     }
 }

@@ -26,7 +26,7 @@ module.exports = ( app ) => {
     });
 
     // List all exercises from an author.
-    app.get('/api/exercises/author/:id', VerifyToken, ( req, res, next ) => {
+    app.get('/api/exercises/author/:id', ( req, res, next ) => {
 
         Exercises.find({
             author: req.params.id,
@@ -47,7 +47,20 @@ module.exports = ( app ) => {
             if( ! data )
                 return res.status( 200 ).json({});
 
-            return res.status( 200 ).json( data );
+            const params = [];
+
+            data.forEach( ( elem, index ) => {
+                params.push({
+                    _id: elem._id,
+                    author: elem.author,
+                    type: elem.type,
+                    title: elem.title,
+                    description: elem.description,
+                    json: JSON.stringify( elem.json )
+                });
+            });
+
+            return res.status( 200 ).json( params );
         });
     });
 

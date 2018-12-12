@@ -1,0 +1,23 @@
+extends ../layout
+
+block content
+    div(class="container")
+        div(class="row pb-4")
+            div(class="col-md-6 offset-md-3 text-center")
+                h3(class="lighter mt-4") #{exercise.title}
+
+                p(class="mb-0") Autor: #{exercise.author.name}
+                p Instituição: #{exercise.author.organization}
+
+                if exercise.type == 1
+                    p(class="font-weight-bold") Diagrama de Caso de Uso
+                else
+                    p(class="font-weight-bold") Diagrama de Classe
+
+                p(class="font-weight-bold") Descrição do problema:
+                p #{exercise.description}
+
+                a(href='/exercicios/resolver/#{exercise._id}' class="btn btn-primary") Resolver exercício
+
+
+

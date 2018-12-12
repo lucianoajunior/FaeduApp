@@ -35,19 +35,18 @@ block diagram
 
         div(id="board")
 
-        div(class="modal fade" id="text-modal" tabindex="-1" role="dialog")
-			div(class="modal-dialog modal-dialog-centered" role="document")
-				div(class="modal-content")
-					div(class="modal-header")
-						h5(class="modal-title") Correção
-						button(type="button" class="close" data-dismiss="modal" aria-label="Close")
-							span(aria-hidden="true") &times;
+    div(class="modal fade" id="text-modal" tabindex="-1" role="dialog")
+        div(class="modal-dialog modal-dialog-centered" role="document")
+            div(class="modal-content")
+                div(class="modal-header")
+                    h5(class="modal-title") #{exercise.title}
+                    button(type="button" class="close" data-dismiss="modal" aria-label="Close")
+                        span(aria-hidden="true") &times;
 
-					div(class="modal-body")
-						| asdasda sdasdasd
+                div(class="modal-body") #{exercise.description}
 
-					div(class="modal-footer")
-						button(type="button" class="btn btn-secondary" data-dismiss="modal") Fechar
+                div(class="modal-footer")
+                    button(type="button" class="btn btn-secondary" data-dismiss="modal") Fechar
 
 block scripts
     script(src="/js/jquery.min.js")

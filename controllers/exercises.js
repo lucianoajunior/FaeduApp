@@ -22,14 +22,29 @@ module.exports = ( app ) => {
                 _id: req.params.id
             }, ( err, result ) => {
 
-                console.log( result );
-
                 if( err )
                     return next( err );
 
                 const view = ( result.type == 1 ) ? 'usecase' : 'class';
 
+                console.log( result );
+
                 res.render("diagrams/" + view, {
+                    exercise: result
+                });
+            });
+        },
+        details: ( req, res, next ) => {
+            Exercises.findOne({
+                _id: req.params.id
+            })
+            .populate('author')
+            .exec( ( err, result ) => {
+
+                if( err )
+                    return next( err );
+
+                res.render('exercises/details', {
                     exercise: result
                 });
             });

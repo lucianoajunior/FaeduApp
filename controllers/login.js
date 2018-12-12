@@ -16,11 +16,13 @@ module.exports = ( app ) => {
                 if( err || ! data ) {
                     req.flash('error', 'Dados inválidos. Por favor, tente novamente.');
 
-                    if( req.body.level == 1 ) {
+                    if( data.level == 1 ) {
                         res.redirect('/admin');
                     } else {
                         res.redirect('/login');
                     }
+
+                    res.end();
                 }
 
                 req.session.isLogged = true;
