@@ -65,7 +65,7 @@ module.exports = ( app ) => {
         });
     });
 
-    app.get('/api/submissions/:id', VerifyToken, ( req, res, next ) => {
+    app.get('/api/submissions/:id', ( req, res, next ) => {
 
         Submissions.findOne({
             _id: req.params.id
@@ -83,7 +83,22 @@ module.exports = ( app ) => {
             if( err )
                 return next( err );
 
-            return res.status( 200 ).json( data );
+            const params = {
+                _id: data._id,
+                author: data.author,
+                exercise: {
+                    _id: data.exercise._id,
+                    author: data.exercise.author,
+                    type: data.exercise.type,
+                    title: data.exercise.title,
+                    description: data.exercise.description,
+                    json: JSON.stringify( data.exercise.json )
+                },
+                json: JSON.stringify( data.json ),
+                date: data.date
+            };
+
+            return res.status( 200 ).json( params );
         });
     });
 
