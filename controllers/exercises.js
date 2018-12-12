@@ -69,6 +69,12 @@ module.exports = ( app ) => {
                 type: 1
             });
         },
+        registerClass: ( req, res ) => {
+            res.render('exercises/registerClass', {
+                author: req.session._id,
+                type: 2
+            });
+        },
         saveUseCase: ( req, res, next ) => {
 
             const data = {

@@ -23,6 +23,9 @@ module.exports = ( app ) => {
         .get( Exercises.registerUseCase )
         .post( Exercises.saveUseCase );
 
+    app.route('/seus-exercicios/classe/cadastrar')
+        .get( Exercises.registerClass );
+
     app.route('/seus-exercicios/excluir/:id')
         .get( Exercises.delete );    
 }

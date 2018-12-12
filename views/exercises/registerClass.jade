@@ -1,0 +1,40 @@
+extends ../layout
+
+block content
+    div(class="container")
+        h3(class="lighter mt-4") Cadastrar classe
+
+        input(type="hidden" name="author" value="#{author}")
+        input(type="hidden" name="type" value="#{type}")
+
+        div(class="form-group")
+            label Título:
+            input(type="text", class="form-control",name="title", placeholder="Digite o título...", required)
+
+        div(class="form-group")
+            label Descrição:
+            textarea(class="form-control" name="description" placeholder="Digite aqui a descrição...")
+
+    div(class="wrapper")
+        div(id="nav-actions")
+            button(id="pointer" onclick="changeAction('pointer')")
+                img(src="/svg/cursor.svg")
+
+            button(id="class" onclick="changeAction('class')")
+                img(src="/svg/square.svg")
+
+            button(id="association" onclick="changeAction('association')")
+                img(src="/svg/arrow.svg")
+
+        div(id="board" class="bordered")
+
+    div(class="container")
+        button(type="submit", class="btn btn-sm btn-primary" onclick="inserirDiagrama()") Cadastrar
+
+block scripts
+    script(src="/js/jquery.min.js")
+    script(src="/p5js/p5.min.js")
+    script(src="/diagrams/sketchClass.js")
+    script(src="/diagrams/Sys.js")
+    script(src="/diagrams/Classe.js")
+    script(src="/diagrams/Line.js")

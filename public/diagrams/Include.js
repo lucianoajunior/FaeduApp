@@ -5,12 +5,12 @@ class Include {
 		this.from = from;
 		this.to = to;
 
-		this.stroke = 2;
+		this.stroke = 1;
 		this.size = 10;
 		this.color = '#000';
 
 		this.angleArrow = 10;
-		this.spaceDotted = 2;
+		this.spaceDotted = 3;
 	}
 
 	draw() {
